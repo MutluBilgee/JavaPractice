@@ -6,7 +6,7 @@ public class DishTask {
         //Print all dish's name that has less than 400 calories
         System.out.println("***********************");
         DishData.getAll().stream()
-                .filter(dish -> dish.getCalories()<400)
+                .filter(dish -> dish.getCalories() < 400)
                 .map(Dish::getName)
                 .forEach(System.out::println);
 
@@ -20,19 +20,33 @@ public class DishTask {
         //Print Three High Caloric Dish Name(>300)
         System.out.println("***********************");
         DishData.getAll().stream()
-                .filter(dish -> dish.getCalories()>300)
+                .filter(dish -> dish.getCalories() > 300)
                 .map(Dish::getName)
                 .limit(3)
+                .forEach(System.out::println);
+
+        System.out.println("my solution");
+        DishData.getAll().stream()
+                .filter(dish -> dish.getCalories()>400)
+                .filter(Dish::isVegetarian)
+                .map(Dish::getName)
+                .limit(4)
                 .forEach(System.out::println);
 
         //Print all dish name that are below 400 calories in sorted
         System.out.println("***********************");
         DishData.getAll().stream()
-                .filter(dish -> dish.getCalories()<400)
+                .filter(dish -> dish.getCalories() < 400)
                 .sorted(comparing(Dish::getCalories).reversed())
                 .map(Dish::getName)
                 .forEach(System.out::println);
 
+        System.out.println("my solution-2");
+        DishData.getAll().stream()
+                .filter(Dish::isVegetarian)
+                .sorted(comparing(Dish::getCalories).reversed())
+                .map(Dish::getName)
+                .forEach(System.out::println);
 
 
     }
