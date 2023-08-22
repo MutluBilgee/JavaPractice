@@ -23,7 +23,7 @@ public class StateTest {
 //        list.stream().map(state -> state.getCity()).forEach(System.out::println);
 
         list.stream()
-                .map(state -> state.getCity())
+                .map(State::getCity)
                 .flatMap(List::stream)
                 .forEach(System.out::println);
 

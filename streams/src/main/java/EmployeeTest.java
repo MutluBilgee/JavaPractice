@@ -10,6 +10,12 @@ public class EmployeeTest {
                 .map(Employee::getEmpEmail)
                 .forEach(System.out::println);
 
+        System.out.println("********* My Solution ************");
+        EmployeeData.readAll()
+                .map(Employee::getEmpName)
+                        .filter(employee -> employee.contains("O"))
+                                .forEach(System.out::println);
+
         //Print all phone numbers
         System.out.println("*********************");
         EmployeeData.readAll()
