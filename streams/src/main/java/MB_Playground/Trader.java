@@ -1,4 +1,4 @@
-package Tasks;
+package MB_Playground;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
