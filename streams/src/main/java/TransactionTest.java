@@ -9,7 +9,7 @@ public class TransactionTest {
         //1- Find all transactions in 2011 and sort by value
         System.out.println("******Task-1************");
         TransactionData.getAll().stream()
-                .filter(transaction -> transaction.getYear()==2011)
+                .filter(transaction -> transaction.getYear() == 2011)
                 .sorted(comparing(Transaction::getValue))
                 .forEach(System.out::println);
 
@@ -35,7 +35,7 @@ public class TransactionTest {
                 .map(transaction -> transaction.getTrader().getName())
                 .distinct()
                 .sorted()
-                .reduce("",(name1,name2)->name1+name2 + " ");
+                .reduce("", (name1, name2) -> name1 + name2 + " ");
 
         System.out.println(result);
 
@@ -62,7 +62,7 @@ public class TransactionTest {
         //8-Find the transaction with the smallest value
         System.out.println("******Task-8************");
         Optional<Transaction> smvalue = TransactionData.getAll().stream()
-                .reduce((t1,t2) -> t1.getValue()<t2.getValue() ? t1 : t2);
+                .reduce((t1, t2) -> t1.getValue() < t2.getValue() ? t1 : t2);
 
         System.out.println(smvalue.get());
 
@@ -70,17 +70,6 @@ public class TransactionTest {
                 .min(comparing(Transaction::getValue));
 
         System.out.println(smallestValue.get());
-
-
-
-
-
-
-
-
-
-
-
 
 
     }
