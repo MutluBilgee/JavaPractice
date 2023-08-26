@@ -1,5 +1,7 @@
 package Tasks;
 
+import java.util.Optional;
+
 import static java.util.Comparator.comparing;
 
 public class TransactionTest {
@@ -37,10 +39,34 @@ public class TransactionTest {
                 .reduce("",(name1,name2)->name1+name2+ " ");
         System.out.println(result);
 
-
         //5- Are any traders based in Milan?
+        System.out.println("------------task5-------------");
+        boolean milanBased = TransactionData.getAll().stream()
+                .anyMatch(transaction -> transaction.getTrader().getCity().equals("Milan"));
+        System.out.println(milanBased);
+
         //6- Print the values of all transactions from the traders living in Cambridge
+        System.out.println("------------task6-------------");
+        TransactionData.getAll().stream()
+                .filter(transaction -> transaction.getTrader().getCity().equals("Cambridge"))
+                .map(Transaction::getValue)
+                .forEach(System.out::println);
+
         //7 - What is the highest value of all the transactions
+        System.out.println("------------task7-------------");
+        Optional<Integer> highestValue = TransactionData.getAll().stream()
+                .map(Transaction::getValue)
+                .reduce(Integer::max);
+        System.out.println(highestValue.get());
+
         //8-Find the transaction with the smallest value
+        System.out.println("------------task8-------------");
+        Optional<Transaction> smallValue = TransactionData.getAll().stream()
+                .reduce((t1,t2) -> t1.getValue()<t2.getValue() ? t1:t2);
+        System.out.println(smallValue.get());
+
+        Optional<Transaction>smallestValue = TransactionData.getAll().stream()
+                .min(comparing(Transaction::getValue));
+        System.out.println(smallestValue.get());
     }
 }
